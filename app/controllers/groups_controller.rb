@@ -8,12 +8,14 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.find(group_params)
+    @group = Group.new(group_params)
+
     if @group.save
       redirect_to groups_path
     else
       rener :new
     end
+
   end
 
   def edit
@@ -36,6 +38,6 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(title, description)
+    params.require(:group).permit(:title, :description)
   end
 end
